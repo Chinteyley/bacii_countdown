@@ -1,6 +1,5 @@
 "use client";
 
-import { LogoCarousel } from "@/components/prismui/logo-carousel";
 import WordReveal from "@/components/prismui/word-reveal";
 import NumberFlow from "@/components/prismui/number-flow";
 import { useState, useEffect } from "react";
@@ -60,7 +59,6 @@ export default function LogoCarouselBasic() {
                     <div className="flex flex-col items-center">
                         <NumberFlow
                             value={timeLeft.days}
-                            continuous={false}
                             willChange={true}
                             spinTiming={{
                                 duration: 500,
@@ -72,7 +70,6 @@ export default function LogoCarouselBasic() {
                     <div className="flex flex-col items-center">
                         <NumberFlow
                             value={timeLeft.hours}
-                            continuous={false}
                             willChange={true}
                             spinTiming={{
                                 duration: 500,
@@ -84,7 +81,6 @@ export default function LogoCarouselBasic() {
                     <div className="flex flex-col items-center">
                         <NumberFlow
                             value={timeLeft.minutes}
-                            continuous={false}
                             willChange={true}
                             spinTiming={{
                                 duration: 500,
@@ -96,7 +92,6 @@ export default function LogoCarouselBasic() {
                     <div className="flex flex-col items-center">
                         <NumberFlow
                             value={timeLeft.seconds}
-                            continuous={false}
                             willChange={true}
                             spinTiming={{
                                 duration: 500,
