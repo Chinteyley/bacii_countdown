@@ -43,14 +43,14 @@ export default function LogoCarouselBasic() {
                     <WordReveal
                         text="You know what's coming?"
                         delay={0.15}
-                        className="text-2xl md:text-4xl font-light"
+                        className="text-xl md:text-4xl font-light"
                     />
                 </div>
                 <div className="p-8 rounded-lg ">
                     <WordReveal
                         text="The BACII is coming!!!"
                         delay={0.75}
-                        className="text-primary"
+                        className="text-2xl md:text-6xl text-primary"
                     />
                 </div>
             </div>
