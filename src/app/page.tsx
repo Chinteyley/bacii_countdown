@@ -57,47 +57,55 @@ export default function LogoCarouselBasic() {
             <div className="text-center space-y-2">
                 <div className="flex justify-center gap-6 md:gap-8 text-3xl md:text-5xl font-bold">
                     <div className="flex flex-col items-center">
-                        <NumberFlow
-                            value={timeLeft.days}
-                            willChange={true}
-                            spinTiming={{
-                                duration: 500,
-                                easing: "ease-out",
-                            }}
-                        />
+                        <div className="min-w-[3ch] text-center">
+                            <NumberFlow
+                                value={timeLeft.days}
+                                willChange={true}
+                                spinTiming={{
+                                    duration: 500,
+                                    easing: "ease-out",
+                                }}
+                            />
+                        </div>
                         <span className="text-base md:text-lg mt-2">days</span>
                     </div>
                     <div className="flex flex-col items-center">
-                        <NumberFlow
-                            value={timeLeft.hours}
-                            willChange={true}
-                            spinTiming={{
-                                duration: 500,
-                                easing: "ease-out",
-                            }}
-                        />
+                        <div className="min-w-[2ch] text-center">
+                            <NumberFlow
+                                value={timeLeft.hours}
+                                willChange={true}
+                                spinTiming={{
+                                    duration: 500,
+                                    easing: "ease-out",
+                                }}
+                            />
+                        </div>
                         <span className="text-base md:text-lg mt-2">hours</span>
                     </div>
                     <div className="flex flex-col items-center">
-                        <NumberFlow
-                            value={timeLeft.minutes}
-                            willChange={true}
-                            spinTiming={{
-                                duration: 500,
-                                easing: "ease-out",
-                            }}
-                        />
+                        <div className="min-w-[2ch] text-center">
+                            <NumberFlow
+                                value={timeLeft.minutes}
+                                willChange={true}
+                                spinTiming={{
+                                    duration: 500,
+                                    easing: "ease-out",
+                                }}
+                            />
+                        </div>
                         <span className="text-base md:text-lg mt-2">mins</span>
                     </div>
                     <div className="flex flex-col items-center">
-                        <NumberFlow
-                            value={timeLeft.seconds}
-                            willChange={true}
-                            spinTiming={{
-                                duration: 500,
-                                easing: "ease-out",
-                            }}
-                        />
+                        <div className="min-w-[2ch] text-center">
+                            <NumberFlow
+                                value={timeLeft.seconds}
+                                willChange={true}
+                                spinTiming={{
+                                    duration: 500,
+                                    easing: "ease-out",
+                                }}
+                            />
+                        </div>
                         <span className="text-base md:text-lg mt-2">secs</span>
                     </div>
                 </div>
