@@ -5,7 +5,8 @@ import NumberFlow from "@/components/prismui/number-flow";
 import { useState, useEffect } from "react";
 
 export default function LogoCarouselBasic() {
-    const targetDate = new Date("2025-08-18T00:00:00");
+    // const targetDate = new Date("2025-08-18T00:00:00");
+    const targetDate = new Date("2025-04-14T00:00:00");
     const [timeLeft, setTimeLeft] = useState({
         days: 0,
         hours: 0,
@@ -48,7 +49,7 @@ export default function LogoCarouselBasic() {
                 </div>
                 <div className="p-8 rounded-lg ">
                     <WordReveal
-                        text="The BACII is coming!!!"
+                        text="The Khmer New Year is coming!!!"
                         delay={0.75}
                         className="text-3xl md:text-7xl text-primary"
                     />
