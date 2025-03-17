@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "KNY Countdown",
-  description: "This is for the KNY countdown.",
+  title: "Bacii Countdown",
+  description: "This is for the Bacii countdown.",
 };
 
 export default function RootLayout({
