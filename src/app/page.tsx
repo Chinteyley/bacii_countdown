@@ -48,7 +48,7 @@ export default function LogoCarouselBasic() {
                 </div>
                 <div className="p-8 rounded-lg ">
                     <WordReveal
-                        text="The Khmer New Year is coming!!!"
+                        text="The Bacii is coming!!!"
                         delay={0.75}
                         className="text-3xl md:text-7xl text-primary"
                     />
