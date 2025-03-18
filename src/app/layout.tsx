@@ -21,8 +21,17 @@ export const metadata: Metadata = {
         description: "Keep track of your remaining study time before the Bacii national exam. Stay motivated and organized for your Grade 12 exams.",
         locale: "en_US",
         type: "website",
+        images: [
+            {
+                url: '/og.png',
+                width: 1200,
+                height: 630,
+                alt: 'CTEY icon',
+            }],
     },
-    viewport: "width=device-width, initial-scale=1",
+    icons: {
+        shortcut: "/favicon.ico",
+    },
     robots: {
         index: true,
         follow: true,
