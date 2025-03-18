@@ -22,6 +22,17 @@ export const metadata: Metadata = {
         title: "Khmer New Year Countdown",
         description: "Track the countdown to Khmer New Year celebrations",
         type: "website",
+        images: [
+            {
+                url: '/og.png',
+                width: 1200,
+                height: 630,
+                alt: 'CTEY icon',
+            }],
+    },
+
+    icons: {
+        shortcut: "/favicon.ico",
     },
 };
 
