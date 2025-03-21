@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+    metadataBase:  new URL("https://kny.ctey.dev"),
     title: "Khmer New Year Countdown",
     description: "Countdown timer for Khmer New Year, celebrating the Cambodian New Year festival.",
     keywords: ["Khmer New Year", "Cambodia", "countdown", "Chaul Chnam Thmey", "Jol Chnam Thmey"],
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
         locale: "en_US",
         images: [
             {
-                url: '/og.png',
+                url: 'https://kny.ctey.dev/og.png',
                 width: 1200,
                 height: 630,
                 alt: 'CTEY icon',
