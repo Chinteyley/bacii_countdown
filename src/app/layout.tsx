@@ -21,7 +21,10 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Khmer New Year Countdown",
         description: "Track the countdown to Khmer New Year celebrations",
+        siteName: "Khmer New Year Countdown",
         type: "website",
+        url: "https://kny.ctey.dev",
+        locale: "en_US",
         images: [
             {
                 url: '/og.png',
@@ -32,7 +35,7 @@ export const metadata: Metadata = {
     },
 
     icons: {
-        shortcut: "/favicon.ico",
+        shortcut: "./favicon.ico",
     },
 };
 
