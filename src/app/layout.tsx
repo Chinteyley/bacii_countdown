@@ -20,6 +20,8 @@ export const metadata: Metadata = {
         title: "Bacii Exam Countdown for Grade 12 Students",
         description: "Keep track of your remaining study time before the Bacii national exam. Stay motivated and organized for your Grade 12 exams.",
         locale: "en_US",
+        siteName: "Bacii Exam Countdown",
+        url: "https://bacii.ctey.dev",
         type: "website",
         images: [
             {
