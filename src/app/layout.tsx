@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+    metadataBase: new URL("https://bacii.ctey.dev"),
     title: "Bacii Exam Countdown ",
     description: "Track your remaining days until the Bacii national exam. A helpful countdown tool designed for Grade 12 students preparing for their upcoming exams in Cambodia.",
     keywords: ["Bacii exam", "Grade 12", "exam countdown", "study preparation", "Cambodian national exam", "high school exam"],
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
         type: "website",
         images: [
             {
-                url: '/og.png',
+                url: 'https://bacii.ctey.dev/og.png',
                 width: 1200,
                 height: 630,
                 alt: 'CTEY icon',
