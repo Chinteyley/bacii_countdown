@@ -14,7 +14,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://bacii.ctey.dev"),
-    title: "Bacii Exam Countdown ",
+    title: {
+        default: "Bacii Exam Countdown",
+        template: "%s | Bacii Exam Countdown",
+    },
     description: "Track your remaining days until the Bacii national exam. A helpful countdown tool designed for Grade 12 students preparing for their upcoming exams in Cambodia.",
     keywords: ["Bacii exam", "Grade 12", "exam countdown", "study preparation", "Cambodian national exam", "high school exam"],
     openGraph: {
