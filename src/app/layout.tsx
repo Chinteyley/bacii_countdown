@@ -16,7 +16,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
     metadataBase:  new URL("https://kny.ctey.dev"),
-    title: "Khmer New Year Countdown",
+    title: {
+        default: "Khmer New Year Countdown",
+        template: "%s | Khmer New Year Countdown",
+    },
     description: "Countdown timer for Khmer New Year, celebrating the Cambodian New Year festival.",
     keywords: ["Khmer New Year", "Cambodia", "countdown", "Chaul Chnam Thmey", "Jol Chnam Thmey"],
     openGraph: {
