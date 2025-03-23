@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kny.ctey.dev/sitemap.xml
