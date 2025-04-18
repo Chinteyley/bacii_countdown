@@ -28,85 +28,86 @@ export default function LogoCarouselBasic() {
             }
         };
 
-        // Calculate immediately
         calculateTimeLeft();
-
-        // Then update every second
         const interval = setInterval(calculateTimeLeft, 1000);
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <div className="pt-8">
-            <div className="text-center space-y-4 mb-12">
-                <div className="p-8 rounded-lg">
-                    <WordReveal
-                        text="You know what's coming?"
-                        delay={0.15}
-                        className="text-xl md:text-4xl font-light"
-                    />
-                </div>
-                <div className="p-8 rounded-lg ">
-                    <WordReveal
-                        text="The Bacii is coming!!!"
-                        delay={0.75}
-                        className="text-3xl md:text-7xl text-primary"
-                    />
-                </div>
-            </div>
-            <div className="text-center space-y-2">
-                <div className="flex justify-center gap-6 md:gap-8 text-3xl md:text-5xl font-bold">
-                    <div className="flex flex-col items-center">
-                        <div className="min-w-[3ch] text-center">
-                            <NumberFlow
-                                value={timeLeft.days}
-                                willChange={true}
-                                spinTiming={{
-                                    duration: 500,
-                                    easing: "ease-out",
-                                }}
+        <div className="flex min-h-screen items-center justify-center">
+            <div className="container mx-auto px-4">
+                <div className="pt-8">
+                    <div className="text-center space-y-4 mb-12">
+                        <div className="p-8 rounded-lg">
+                            <WordReveal
+                                text="You know what's coming?"
+                                delay={0.15}
+                                className="text-xl md:text-4xl font-light"
                             />
                         </div>
-                        <span className="text-base md:text-lg mt-2">days</span>
+                        <div className="p-8 rounded-lg ">
+                            <WordReveal
+                                text="The Bacii is coming!!!"
+                                delay={0.75}
+                                className="text-3xl md:text-7xl text-primary"
+                            />
+                        </div>
                     </div>
-                    <div className="flex flex-col items-center">
-                        <div className="min-w-[2ch] text-center">
-                            <NumberFlow
-                                value={timeLeft.hours}
-                                willChange={true}
-                                spinTiming={{
-                                    duration: 500,
-                                    easing: "ease-out",
-                                }}
-                            />
+                    <div className="text-center space-y-2">
+                        <div className="flex justify-center gap-6 md:gap-8 text-3xl md:text-5xl font-bold">
+                            <div className="flex flex-col items-center">
+                                <div className="min-w-[3ch] text-center">
+                                    <NumberFlow
+                                        value={timeLeft.days}
+                                        willChange={true}
+                                        spinTiming={{
+                                            duration: 500,
+                                            easing: "ease-out",
+                                        }}
+                                    />
+                                </div>
+                                <span className="text-base md:text-lg mt-2">days</span>
+                            </div>
+                            <div className="flex flex-col items-center">
+                                <div className="min-w-[2ch] text-center">
+                                    <NumberFlow
+                                        value={timeLeft.hours}
+                                        willChange={true}
+                                        spinTiming={{
+                                            duration: 500,
+                                            easing: "ease-out",
+                                        }}
+                                    />
+                                </div>
+                                <span className="text-base md:text-lg mt-2">hours</span>
+                            </div>
+                            <div className="flex flex-col items-center">
+                                <div className="min-w-[2ch] text-center">
+                                    <NumberFlow
+                                        value={timeLeft.minutes}
+                                        willChange={true}
+                                        spinTiming={{
+                                            duration: 500,
+                                            easing: "ease-out",
+                                        }}
+                                    />
+                                </div>
+                                <span className="text-base md:text-lg mt-2">mins</span>
+                            </div>
+                            <div className="flex flex-col items-center">
+                                <div className="min-w-[2ch] text-center">
+                                    <NumberFlow
+                                        value={timeLeft.seconds}
+                                        willChange={true}
+                                        spinTiming={{
+                                            duration: 500,
+                                            easing: "ease-out",
+                                        }}
+                                    />
+                                </div>
+                                <span className="text-base md:text-lg mt-2">secs</span>
+                            </div>
                         </div>
-                        <span className="text-base md:text-lg mt-2">hours</span>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <div className="min-w-[2ch] text-center">
-                            <NumberFlow
-                                value={timeLeft.minutes}
-                                willChange={true}
-                                spinTiming={{
-                                    duration: 500,
-                                    easing: "ease-out",
-                                }}
-                            />
-                        </div>
-                        <span className="text-base md:text-lg mt-2">mins</span>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <div className="min-w-[2ch] text-center">
-                            <NumberFlow
-                                value={timeLeft.seconds}
-                                willChange={true}
-                                spinTiming={{
-                                    duration: 500,
-                                    easing: "ease-out",
-                                }}
-                            />
-                        </div>
-                        <span className="text-base md:text-lg mt-2">secs</span>
                     </div>
                 </div>
             </div>
