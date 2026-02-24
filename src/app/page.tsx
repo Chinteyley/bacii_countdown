@@ -13,7 +13,7 @@ export default function LogoCarouselBasic() {
   });
 
   useEffect(() => {
-    const targetDate = new Date("2025-08-28T00:00:00");
+    const targetDate = new Date("2026-08-10T07:00:00+07:00");
     const calculateTimeLeft = () => {
       const now = new Date();
       const difference = targetDate.getTime() - now.getTime();
