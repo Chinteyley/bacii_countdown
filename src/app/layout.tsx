@@ -5,17 +5,15 @@ import "./globals.css";
 const geistSans = Geist({
     variable: "--font-geist-sans",
     subsets: ["latin"],
-    display: "swap",
 });
 
 const geistMono = Geist_Mono({
     variable: "--font-geist-mono",
     subsets: ["latin"],
-    display: "swap",
 });
 
 export const metadata: Metadata = {
-    metadataBase:  new URL("https://kny.ctey.dev"),
+    metadataBase: new URL("https://kny.ctey.dev"),
     title: {
         default: "Khmer New Year Countdown",
         template: "%s | Khmer New Year Countdown",
@@ -25,10 +23,10 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Khmer New Year Countdown",
         description: "Track the countdown to Khmer New Year celebrations",
-        siteName: "Khmer New Year Countdown",
-        type: "website",
-        url: "https://kny.ctey.dev",
         locale: "en_US",
+        siteName: "Khmer New Year Countdown",
+        url: "https://kny.ctey.dev",
+        type: "website",
         images: [
             {
                 url: 'https://kny.ctey.dev/og.png',
@@ -37,9 +35,12 @@ export const metadata: Metadata = {
                 alt: 'CTEY icon',
             }],
     },
-
     icons: {
-        shortcut: "./favicon.ico",
+        shortcut: "/favicon.ico",
+    },
+    robots: {
+        index: true,
+        follow: true,
     },
 };
 
@@ -51,7 +52,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <head>
-            <link rel="icon" href="/icon?<generated>" type="image/png" sizes="32x32" />
+        <link rel="icon" href="/icon?<generated>" type="image/png" sizes="32x32" />
             <title></title>
         </head>
         <body
