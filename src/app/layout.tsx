@@ -40,14 +40,11 @@ export const metadata: Metadata = {
     siteName: "Bacii Exam Countdown",
     url: "https://bacii.ctey.dev",
     type: "website",
-    images: [
-      {
-        url: "https://bacii.ctey.dev/og.png",
-        width: 1200,
-        height: 630,
-        alt: "Bacii Exam Countdown",
-      },
-    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bacii Exam Countdown",
+    description: "Countdown to the Cambodian Bac II national exam.",
   },
   robots: {
     index: true,

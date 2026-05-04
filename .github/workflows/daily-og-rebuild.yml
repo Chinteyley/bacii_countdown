@@ -1,0 +1,22 @@
+name: daily og rebuild
+
+on:
+  schedule:
+    # 17:00 UTC = 00:00 Asia/Phnom_Penh (UTC+7) — fires when the local
+    # day rolls over so the baked countdown number stays accurate.
+    - cron: "0 17 * * *"
+  workflow_dispatch:
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: trigger host deploy hook
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$DEPLOY_HOOK_URL" ]; then
+            echo "DEPLOY_HOOK_URL secret is not set"
+            exit 1
+          fi
+          curl -fsSL -X POST "$DEPLOY_HOOK_URL"
