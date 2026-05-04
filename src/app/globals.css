@@ -88,6 +88,7 @@
       center;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 240ms var(--ease-out);
   }
   ::selection {
     background: var(--glyph);

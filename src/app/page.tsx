@@ -42,8 +42,8 @@ function ThemeToggle({
 }) {
   const cls = (mode: Theme) =>
     cn(
-      "relative cursor-pointer px-1 duration-200 ease-out",
-      "transition-[color,transform] active:scale-[0.96]",
+      "relative cursor-pointer px-1 duration-200 ease-[var(--ease-out)]",
+      "transition-[color,transform] motion-safe:active:scale-[0.96]",
       "before:absolute before:-inset-x-2 before:-inset-y-4 before:content-['']",
       theme === mode ? "text-fg" : "text-fg-faint hover:text-fg-muted",
     );
@@ -115,13 +115,14 @@ export default function Page() {
         <ThemeToggle theme={theme} onChange={setTheme} />
       </header>
 
-      <section className="flex flex-col items-center justify-center gap-5 sm:gap-7">
+      <section className="flex flex-col items-center justify-center gap-3 sm:gap-4">
         <div
-          className="font-display tabular-nums leading-[0.85] text-fg"
+          className="font-display tabular-nums text-fg [text-box:trim-both_cap_alphabetic] [&_*]:[text-box:trim-both_cap_alphabetic]"
           style={{
             fontSize: "clamp(7rem, 38vmin, 22rem)",
             fontWeight: 700,
             letterSpacing: "-0.02em",
+            lineHeight: 0.85,
             fontVariationSettings: '"ROND" 0',
           }}
         >
@@ -129,8 +130,8 @@ export default function Page() {
             value={mounted ? time.days : 0}
             willChange
             spinTiming={{
-              duration: 700,
-              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+              duration: 500,
+              easing: "cubic-bezier(0.23, 1, 0.32, 1)",
             }}
           />
         </div>
@@ -163,7 +164,7 @@ export default function Page() {
           href="https://ctey.dev"
           target="_blank"
           rel="noopener noreferrer"
-          className="relative inline-flex items-center gap-2 duration-200 ease-out transition-[color,transform] hover:text-fg active:scale-[0.96] before:absolute before:-inset-x-1 before:-inset-y-3.5 before:content-['']"
+          className="relative inline-flex items-center gap-2 duration-200 ease-[var(--ease-out)] transition-[color,transform] hover:text-fg motion-safe:active:scale-[0.96] before:absolute before:-inset-x-1 before:-inset-y-3.5 before:content-['']"
         >
           <span>made by chintey</span>
           <AnimatedLogo size={14} />
