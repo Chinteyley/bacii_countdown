@@ -1,120 +1,176 @@
 "use client";
 
-import WordReveal from "@/components/prismui/word-reveal";
+import { useEffect, useState } from "react";
+import { AnimatedLogo } from "@/components/animated-logo";
 import NumberFlow from "@/components/prismui/number-flow";
-import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
 
-export default function LogoCarouselBasic() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+const TARGET = new Date("2026-08-10T07:00:00+07:00");
+const STORAGE_KEY = "bacii-theme";
+
+type Theme = "light" | "dark";
+
+interface TimeLeft {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+}
+
+const ZERO: TimeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
+
+function getTimeLeft(): TimeLeft {
+  const diff = Math.max(0, TARGET.getTime() - Date.now());
+  return {
+    days: Math.floor(diff / 86_400_000),
+    hours: Math.floor((diff % 86_400_000) / 3_600_000),
+    minutes: Math.floor((diff % 3_600_000) / 60_000),
+    seconds: Math.floor((diff % 60_000) / 1000),
+  };
+}
+
+function pad(n: number): string {
+  return n.toString().padStart(2, "0");
+}
+
+function ThemeToggle({
+  theme,
+  onChange,
+}: {
+  theme: Theme | null;
+  onChange: (next: Theme) => void;
+}) {
+  const cls = (mode: Theme) =>
+    cn(
+      "relative cursor-pointer px-1 duration-200 ease-[var(--ease-out)]",
+      "transition-[color,transform] motion-safe:active:scale-[0.96]",
+      "before:absolute before:-inset-x-2 before:-inset-y-4 before:content-['']",
+      theme === mode ? "text-fg" : "text-fg-faint hover:text-fg-muted",
+    );
+  return (
+    <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.32em] sm:text-[11px]">
+      <button
+        type="button"
+        onClick={() => onChange("light")}
+        className={cls("light")}
+      >
+        light
+      </button>
+      <span aria-hidden className="text-fg-faint">
+        /
+      </span>
+      <button
+        type="button"
+        onClick={() => onChange("dark")}
+        className={cls("dark")}
+      >
+        dark
+      </button>
+    </div>
+  );
+}
+
+export default function Page() {
+  const [time, setTime] = useState<TimeLeft>(ZERO);
+  const [mounted, setMounted] = useState(false);
+  const [theme, setThemeState] = useState<Theme | null>(null);
 
   useEffect(() => {
-    const targetDate = new Date("2026-08-10T07:00:00+07:00");
-    const calculateTimeLeft = () => {
-      const now = new Date();
-      const difference = targetDate.getTime() - now.getTime();
+    setMounted(true);
+    const tick = () => setTime(getTimeLeft());
+    tick();
+    const id = setInterval(tick, 1000);
 
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
-        );
-        const minutes = Math.floor(
-          (difference % (1000 * 60 * 60)) / (1000 * 60),
-        );
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+    const initial: Theme = document.documentElement.classList.contains("dark")
+      ? "dark"
+      : "light";
+    setThemeState(initial);
 
-        setTimeLeft({ days, hours, minutes, seconds });
-      }
-    };
-
-    calculateTimeLeft();
-    const interval = setInterval(calculateTimeLeft, 1000);
-    return () => clearInterval(interval);
+    return () => clearInterval(id);
   }, []);
 
+  const setTheme = (next: Theme) => {
+    setThemeState(next);
+    document.documentElement.classList.toggle("dark", next === "dark");
+    try {
+      localStorage.setItem(STORAGE_KEY, next);
+    } catch {
+      // ignore storage errors (private mode, quota, etc.)
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <div className="container mx-auto px-4 -mt-16">
-        <div className="space-y-8">
-          <div className="text-center space-y-4">
-            <div className="p-8 rounded-lg">
-              <WordReveal
-                text="You know what's coming?"
-                delay={0.15}
-                className="text-xl md:text-4xl font-light"
-              />
-            </div>
-            <div className="p-8 rounded-lg ">
-              <WordReveal
-                text="The Bacii is coming!!!"
-                delay={0.75}
-                className="text-3xl md:text-7xl text-primary"
-              />
-            </div>
+    <main className="relative grid h-svh min-h-[640px] grid-rows-[auto_1fr_auto] gap-6 px-6 pt-6 pb-5 sm:px-10 sm:pt-8 sm:pb-6 md:px-16 md:pt-10 md:pb-8">
+      <header className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-1.5 font-mono text-[10px] uppercase tracking-[0.32em] sm:text-[11px]">
+          <div className="flex items-center gap-2.5 text-fg">
+            <span
+              aria-hidden
+              className="block h-1.5 w-1.5 rounded-full bg-glyph shadow-[0_0_12px_var(--glyph),0_0_4px_var(--glyph)]"
+            />
+            <span>Bac II</span>
           </div>
-          <div className="text-center space-y-2">
-            <div className="flex justify-center gap-6 md:gap-8 text-3xl md:text-5xl font-bold">
-              <div className="flex flex-col items-center">
-                <div className="min-w-[3ch] text-center">
-                  <NumberFlow
-                    value={timeLeft.days}
-                    willChange={true}
-                    spinTiming={{
-                      duration: 500,
-                      easing: "ease-out",
-                    }}
-                  />
-                </div>
-                <span className="text-base md:text-lg mt-2">days</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="min-w-[2ch] text-center">
-                  <NumberFlow
-                    value={timeLeft.hours}
-                    willChange={true}
-                    spinTiming={{
-                      duration: 500,
-                      easing: "ease-out",
-                    }}
-                  />
-                </div>
-                <span className="text-base md:text-lg mt-2">hours</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="min-w-[2ch] text-center">
-                  <NumberFlow
-                    value={timeLeft.minutes}
-                    willChange={true}
-                    spinTiming={{
-                      duration: 500,
-                      easing: "ease-out",
-                    }}
-                  />
-                </div>
-                <span className="text-base md:text-lg mt-2">mins</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <div className="min-w-[2ch] text-center">
-                  <NumberFlow
-                    value={timeLeft.seconds}
-                    willChange={true}
-                    spinTiming={{
-                      duration: 500,
-                      easing: "ease-out",
-                    }}
-                  />
-                </div>
-                <span className="text-base md:text-lg mt-2">secs</span>
-              </div>
-            </div>
-          </div>
+          <p className="ml-[15px] text-fg-muted">10 / 08 / 2026</p>
         </div>
-      </div>
-    </div>
+        <ThemeToggle theme={theme} onChange={setTheme} />
+      </header>
+
+      <section className="flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-10">
+        <div
+          className="font-display tabular-nums text-fg [text-box:trim-both_cap_alphabetic] [&_*]:[text-box:trim-both_cap_alphabetic]"
+          style={{
+            fontSize: "clamp(7rem, 38vmin, 22rem)",
+            fontWeight: 700,
+            letterSpacing: "-0.02em",
+            lineHeight: 0.85,
+            fontVariationSettings: '"ROND" 0',
+          }}
+        >
+          <NumberFlow
+            value={mounted ? time.days : 0}
+            willChange
+            spinTiming={{
+              duration: 500,
+              easing: "cubic-bezier(0.23, 1, 0.32, 1)",
+            }}
+          />
+        </div>
+        <p className="font-mono text-[11px] uppercase tracking-[0.65em] text-fg sm:text-xs">
+          days
+        </p>
+        <p
+          className="font-mono text-xs tabular-nums tracking-[0.28em] text-fg-muted sm:text-sm"
+          suppressHydrationWarning
+        >
+          {mounted ? (
+            <>
+              {pad(time.hours)}
+              <span className="text-fg-faint">h</span>
+              {"   "}
+              {pad(time.minutes)}
+              <span className="text-fg-faint">m</span>
+              {"   "}
+              {pad(time.seconds)}
+              <span className="text-fg-faint">s</span>
+            </>
+          ) : (
+            "00h  00m  00s"
+          )}
+        </p>
+      </section>
+
+      <footer className="flex items-end justify-between gap-4 font-mono text-[10px] uppercase tracking-[0.28em] text-fg-faint">
+        <a
+          href="https://ctey.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative inline-flex items-center gap-2 duration-200 ease-[var(--ease-out)] transition-[color,transform] hover:text-fg motion-safe:active:scale-[0.96] before:absolute before:-inset-x-1 before:-inset-y-3.5 before:content-['']"
+        >
+          <span>made by chintey</span>
+          <AnimatedLogo size={14} />
+        </a>
+        <p>v.01 / cambodia</p>
+      </footer>
+    </main>
   );
 }
