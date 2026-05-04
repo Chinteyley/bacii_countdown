@@ -115,7 +115,7 @@ export default function Page() {
         <ThemeToggle theme={theme} onChange={setTheme} />
       </header>
 
-      <section className="flex flex-col items-center justify-center gap-3 sm:gap-4">
+      <section className="flex flex-col items-center justify-center gap-6 sm:gap-8 md:gap-10">
         <div
           className="font-display tabular-nums text-fg [text-box:trim-both_cap_alphabetic] [&_*]:[text-box:trim-both_cap_alphabetic]"
           style={{
