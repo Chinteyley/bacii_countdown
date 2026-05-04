@@ -42,20 +42,28 @@ function ThemeToggle({
 }) {
   const cls = (mode: Theme) =>
     cn(
-      "transition-colors",
-      theme === mode
-        ? "text-fg"
-        : "text-fg-faint hover:text-fg-muted cursor-pointer",
+      "relative cursor-pointer px-1 duration-200 ease-out",
+      "transition-[color,transform] active:scale-[0.96]",
+      "before:absolute before:-inset-x-2 before:-inset-y-4 before:content-['']",
+      theme === mode ? "text-fg" : "text-fg-faint hover:text-fg-muted",
     );
   return (
     <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.32em] sm:text-[11px]">
-      <button type="button" onClick={() => onChange("light")} className={cls("light")}>
+      <button
+        type="button"
+        onClick={() => onChange("light")}
+        className={cls("light")}
+      >
         light
       </button>
       <span aria-hidden className="text-fg-faint">
         /
       </span>
-      <button type="button" onClick={() => onChange("dark")} className={cls("dark")}>
+      <button
+        type="button"
+        onClick={() => onChange("dark")}
+        className={cls("dark")}
+      >
         dark
       </button>
     </div>
@@ -137,15 +145,15 @@ export default function Page() {
             <>
               {pad(time.hours)}
               <span className="text-fg-faint">h</span>
-              {"   "}
+              {"   "}
               {pad(time.minutes)}
               <span className="text-fg-faint">m</span>
-              {"   "}
+              {"   "}
               {pad(time.seconds)}
               <span className="text-fg-faint">s</span>
             </>
           ) : (
-            "00h   00m   00s"
+            "00h  00m  00s"
           )}
         </p>
       </section>
@@ -155,7 +163,7 @@ export default function Page() {
           href="https://ctey.dev"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 transition-colors hover:text-fg"
+          className="relative inline-flex items-center gap-2 duration-200 ease-out transition-[color,transform] hover:text-fg active:scale-[0.96] before:absolute before:-inset-x-1 before:-inset-y-3.5 before:content-['']"
         >
           <span>made by chintey</span>
           <AnimatedLogo size={14} />
