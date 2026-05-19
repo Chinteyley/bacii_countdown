@@ -5,11 +5,18 @@ export const alt = "Khmer New Year Countdown";
 export const size = { width: 1200, height: 630 } as const;
 export const contentType = "image/png";
 
-const TARGET = new Date("2027-04-14T00:00:00+07:00");
 const DAY_MS = 86_400_000;
 
+function nextKhmerNewYear(): Date {
+  // April 14 00:00 ICT (UTC+7) === April 13 17:00 UTC.
+  const now = Date.now();
+  const year = new Date(now).getUTCFullYear();
+  const thisYear = Date.UTC(year, 3, 13, 17, 0, 0);
+  return new Date(now < thisYear ? thisYear : Date.UTC(year + 1, 3, 13, 17, 0, 0));
+}
+
 function daysLeft(): number {
-  const diff = Math.max(0, TARGET.getTime() - Date.now());
+  const diff = Math.max(0, nextKhmerNewYear().getTime() - Date.now());
   return Math.floor(diff / DAY_MS);
 }
 

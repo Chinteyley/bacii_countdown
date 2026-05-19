@@ -5,7 +5,16 @@ import { AnimatedLogo } from "@/components/animated-logo";
 import NumberFlow from "@/components/prismui/number-flow";
 import { cn } from "@/lib/utils";
 
-const TARGET = new Date("2027-04-14T00:00:00+07:00");
+function nextKhmerNewYear(): Date {
+  // April 14 00:00 ICT (UTC+7) === April 13 17:00 UTC.
+  const now = Date.now();
+  const year = new Date(now).getUTCFullYear();
+  const thisYear = Date.UTC(year, 3, 13, 17, 0, 0);
+  return new Date(now < thisYear ? thisYear : Date.UTC(year + 1, 3, 13, 17, 0, 0));
+}
+
+const TARGET = nextKhmerNewYear();
+const TARGET_YEAR = TARGET.getUTCFullYear();
 const STORAGE_KEY = "kny-theme";
 
 type Theme = "light" | "dark";
@@ -110,7 +119,7 @@ export default function Page() {
             />
             <span>Khmer New Year</span>
           </div>
-          <p className="ml-[15px] text-fg-muted">14 / 04 / 2027</p>
+          <p className="ml-[15px] text-fg-muted">14 / 04 / {TARGET_YEAR}</p>
         </div>
         <ThemeToggle theme={theme} onChange={setTheme} />
       </header>
