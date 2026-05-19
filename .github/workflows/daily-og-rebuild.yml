@@ -11,7 +11,7 @@ jobs:
   trigger-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: trigger host deploy hook
+      - name: trigger bacii deploy hook
         env:
           DEPLOY_HOOK_URL: ${{ secrets.DEPLOY_HOOK_URL }}
         run: |
@@ -20,3 +20,13 @@ jobs:
             exit 1
           fi
           curl -fsSL -X POST "$DEPLOY_HOOK_URL"
+      - name: trigger kny deploy hook
+        if: always()
+        env:
+          KNY_DEPLOY_HOOK_URL: ${{ secrets.KNY_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$KNY_DEPLOY_HOOK_URL" ]; then
+            echo "KNY_DEPLOY_HOOK_URL secret is not set"
+            exit 1
+          fi
+          curl -fsSL -X POST "$KNY_DEPLOY_HOOK_URL"
