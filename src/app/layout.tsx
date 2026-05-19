@@ -19,32 +19,32 @@ const doto = Doto({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bacii.ctey.dev"),
+  metadataBase: new URL("https://kny.ctey.dev"),
   title: {
-    default: "Bacii Exam Countdown",
-    template: "%s | Bacii Exam Countdown",
+    default: "Khmer New Year Countdown",
+    template: "%s | Khmer New Year Countdown",
   },
   description:
-    "Countdown to the Cambodian Bac II national exam. One number, on a black screen, for Grade 12 students.",
+    "Countdown to Khmer New Year. One number, on a black screen, for Cambodia.",
   keywords: [
-    "Bacii exam",
-    "Bac II",
-    "Grade 12",
-    "exam countdown",
-    "Cambodian national exam",
+    "Khmer New Year",
+    "Choul Chnam Thmey",
+    "Cambodia",
+    "countdown",
+    "Maha Songkran",
   ],
   openGraph: {
-    title: "Bacii Exam Countdown",
-    description: "Countdown to the Cambodian Bac II national exam.",
+    title: "Khmer New Year Countdown",
+    description: "Countdown to Khmer New Year.",
     locale: "en_US",
-    siteName: "Bacii Exam Countdown",
-    url: "https://bacii.ctey.dev",
+    siteName: "Khmer New Year Countdown",
+    url: "https://kny.ctey.dev",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Bacii Exam Countdown",
-    description: "Countdown to the Cambodian Bac II national exam.",
+    title: "Khmer New Year Countdown",
+    description: "Countdown to Khmer New Year.",
   },
   robots: {
     index: true,
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
 };
 
-const themeInitScript = `try{var t=localStorage.getItem('bacii-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.classList.toggle('dark',t==='dark');}catch(e){}`;
+const themeInitScript = `try{var t=localStorage.getItem('kny-theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.classList.toggle('dark',t==='dark');}catch(e){}`;
 
 export default function RootLayout({
   children,

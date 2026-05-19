@@ -5,8 +5,8 @@ import { AnimatedLogo } from "@/components/animated-logo";
 import NumberFlow from "@/components/prismui/number-flow";
 import { cn } from "@/lib/utils";
 
-const TARGET = new Date("2026-08-10T07:00:00+07:00");
-const STORAGE_KEY = "bacii-theme";
+const TARGET = new Date("2027-04-14T00:00:00+07:00");
+const STORAGE_KEY = "kny-theme";
 
 type Theme = "light" | "dark";
 
@@ -108,9 +108,9 @@ export default function Page() {
               aria-hidden
               className="block h-1.5 w-1.5 rounded-full bg-glyph shadow-[0_0_12px_var(--glyph),0_0_4px_var(--glyph)]"
             />
-            <span>Bac II</span>
+            <span>Khmer New Year</span>
           </div>
-          <p className="ml-[15px] text-fg-muted">10 / 08 / 2026</p>
+          <p className="ml-[15px] text-fg-muted">14 / 04 / 2027</p>
         </div>
         <ThemeToggle theme={theme} onChange={setTheme} />
       </header>

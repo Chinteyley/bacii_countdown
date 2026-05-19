@@ -1,11 +1,11 @@
 import { ImageResponse } from "next/og";
 
 export const dynamic = "force-static";
-export const alt = "Bacii Exam Countdown";
+export const alt = "Khmer New Year Countdown";
 export const size = { width: 1200, height: 630 } as const;
 export const contentType = "image/png";
 
-const TARGET = new Date("2026-08-10T07:00:00+07:00");
+const TARGET = new Date("2027-04-14T00:00:00+07:00");
 const DAY_MS = 86_400_000;
 
 function daysLeft(): number {
@@ -114,7 +114,7 @@ export default async function OpenGraphImage() {
             marginLeft: "-46px",
           }}
         />
-        <span>Bacii is in</span>
+        <span>Khmer New Year in</span>
       </div>
 
       <div
