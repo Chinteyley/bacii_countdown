@@ -76,6 +76,7 @@ export default function Page() {
   const [theme, setThemeState] = useState<Theme | null>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time mount guard to gate hydration-sensitive UI
     setMounted(true);
     const tick = () => setTime(getTimeLeft());
     tick();
