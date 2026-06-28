@@ -1,0 +1,8 @@
+{
+  // Cloudflare Pages project name — must match the project in your CF dashboard.
+  "name": "bacii-countdown",
+  // Static export output directory (next.config.ts sets output: "export").
+  "pages_build_output_dir": "out",
+  // No Pages Functions in a static site; kept current for any future use.
+  "compatibility_date": "2026-06-28"
+}
