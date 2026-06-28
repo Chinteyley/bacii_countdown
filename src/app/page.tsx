@@ -111,6 +111,15 @@ export default function Page() {
 
   return (
     <main className="relative grid h-svh min-h-[640px] grid-rows-[auto_1fr_auto] gap-6 px-6 pt-6 pb-5 sm:px-10 sm:pt-8 sm:pb-6 md:px-16 md:pt-10 md:pb-8">
+      <h1 className="sr-only">
+        Khmer New Year Countdown — days until Choul Chnam Thmey {TARGET_YEAR}
+      </h1>
+      <p className="sr-only">
+        Khmer New Year Countdown is a free, live timer counting down the days,
+        hours, minutes, and seconds until Khmer New Year (Choul Chnam Thmey) on
+        14 April {TARGET_YEAR} — the traditional Cambodian new year celebrating
+        Maha Songkran.
+      </p>
       <header className="flex items-start justify-between gap-4">
         <div className="flex flex-col gap-1.5 font-mono text-[10px] uppercase tracking-[0.32em] sm:text-[11px]">
           <div className="flex items-center gap-2.5 text-fg">
