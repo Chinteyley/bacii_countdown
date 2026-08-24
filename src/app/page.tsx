@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatedLogo } from "@/components/animated-logo";
 import NumberFlow from "@/components/prismui/number-flow";
+import { PAGE_HEADING, PAGE_HEADING_REST, PAGE_SUMMARY } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 const TARGET = new Date("2026-08-10T07:00:00+07:00");
@@ -102,24 +103,19 @@ export default function Page() {
 
   return (
     <main className="relative grid h-svh min-h-[640px] grid-rows-[auto_1fr_auto] gap-6 px-6 pt-6 pb-5 sm:px-10 sm:pt-8 sm:pb-6 md:px-16 md:pt-10 md:pb-8">
-      <h1 className="sr-only">
-        BacII Countdown — days until the Cambodian Bac II national exam
-      </h1>
-      <p className="sr-only">
-        BacII Countdown is a free, live timer counting down the days, hours,
-        minutes, and seconds until the Cambodian Bac II (Baccalaureate II)
-        national exam on 10 August 2026. Built for Grade 12 students preparing
-        for the Cambodian national high-school exit examination.
-      </p>
+      <p className="sr-only">{PAGE_SUMMARY}</p>
       <header className="flex items-start justify-between gap-4">
         <div className="flex flex-col gap-1.5 font-mono text-[10px] uppercase tracking-[0.32em] sm:text-[11px]">
-          <div className="flex items-center gap-2.5 text-fg">
+          <h1 className="flex items-center gap-2.5 text-fg">
             <span
               aria-hidden
               className="block h-1.5 w-1.5 rounded-full bg-glyph shadow-[0_0_12px_var(--glyph),0_0_4px_var(--glyph)]"
             />
-            <span>Bac II</span>
-          </div>
+            <span>
+              {PAGE_HEADING}
+              <span className="sr-only">{PAGE_HEADING_REST}</span>
+            </span>
+          </h1>
           <p className="ml-[15px] text-fg-muted">10 / 08 / 2026</p>
         </div>
         <ThemeToggle theme={theme} onChange={setTheme} />

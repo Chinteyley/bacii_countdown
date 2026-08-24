@@ -1,5 +1,13 @@
 import type { Metadata } from "next";
 import { Doto, Geist, Geist_Mono } from "next/font/google";
+import {
+  EXAM_START,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_ORIGIN,
+  SITE_TITLE,
+  SITE_URL,
+} from "@/lib/seo";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,39 +27,34 @@ const doto = Doto({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://bacii.ctey.dev"),
+  metadataBase: new URL(SITE_ORIGIN),
   title: {
-    default: "BacII Countdown — Cambodia Bac II National Exam Timer",
-    template: "%s | BacII Countdown",
+    default: SITE_TITLE,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "BacII Countdown — a free live timer counting down the days until the Cambodian Bac II national exam, made for Grade 12 students.",
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
   keywords: [
-    "BacII Countdown",
-    "Bacii countdown timer",
-    "Bac II exam",
-    "Grade 12",
-    "exam countdown",
-    "Cambodian national exam",
-    "Baccalaureate II",
+    "bacii 2026 countdown",
+    "bacii countdown",
+    "Cambodia Bac II",
+    "Grade 12 exam date 2026",
   ],
   alternates: {
-    canonical: "/",
+    canonical: SITE_URL,
   },
   openGraph: {
-    title: "BacII Countdown — Cambodia Bac II National Exam Timer",
-    description:
-      "Free live countdown to the Cambodian Bac II national exam, for Grade 12 students.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
     locale: "en_US",
-    siteName: "BacII Countdown",
-    url: "https://bacii.ctey.dev",
+    siteName: SITE_NAME,
+    url: SITE_URL,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "BacII Countdown — Cambodia Bac II National Exam Timer",
-    description:
-      "Free live countdown to the Cambodian Bac II national exam, for Grade 12 students.",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
@@ -63,20 +66,37 @@ const themeInitScript = `try{var t=localStorage.getItem('bacii-theme');if(t!=='l
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: "BacII Countdown",
-  url: "https://bacii.ctey.dev",
-  applicationCategory: "EducationalApplication",
-  operatingSystem: "Web",
-  inLanguage: "en",
-  isAccessibleForFree: true,
-  description:
-    "Free live countdown to the Cambodian Bac II national exam for Grade 12 students.",
-  author: {
-    "@type": "Person",
-    name: "Chintey Ley",
-    url: "https://ctey.dev",
-  },
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      name: SITE_NAME,
+      url: SITE_URL,
+      applicationCategory: "EducationalApplication",
+      operatingSystem: "Web",
+      inLanguage: "en",
+      isAccessibleForFree: true,
+      description: SITE_DESCRIPTION,
+      author: {
+        "@type": "Person",
+        name: "Chintey Ley",
+        url: "https://ctey.dev",
+      },
+    },
+    {
+      "@type": "Event",
+      name: "Cambodia Bac II National Exam 2026",
+      url: SITE_URL,
+      startDate: EXAM_START,
+      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+      eventStatus: "https://schema.org/EventScheduled",
+      location: {
+        "@type": "Country",
+        name: "Cambodia",
+      },
+      description:
+        "Cambodia's Grade 12 national exam (Bac II) on 10 August 2026.",
+    },
+  ],
 };
 
 export default function RootLayout({
