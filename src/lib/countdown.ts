@@ -1,4 +1,5 @@
-export const EXAM_START = "2026-08-10T07:00:00+07:00";
+// Placeholder until MoEYS publishes the 2027 Bac II date. Same calendar day as 2026.
+export const EXAM_START = "2027-08-10T07:00:00+07:00";
 export const EXAM_START_MS = new Date(EXAM_START).getTime();
 
 export interface TimeLeft {

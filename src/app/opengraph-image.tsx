@@ -1,15 +1,15 @@
 import { ImageResponse } from "next/og";
+import { EXAM_START_MS } from "@/lib/countdown";
 
 export const dynamic = "force-static";
-export const alt = "BacII 2026 countdown — Cambodia Grade 12 exam date";
+export const alt = "BacII 2027 countdown — Cambodia Grade 12 exam date";
 export const size = { width: 1200, height: 630 } as const;
 export const contentType = "image/png";
 
-const TARGET = new Date("2026-08-10T07:00:00+07:00");
 const DAY_MS = 86_400_000;
 
 function daysLeft(): number {
-  const diff = Math.max(0, TARGET.getTime() - Date.now());
+  const diff = Math.max(0, EXAM_START_MS - Date.now());
   return Math.floor(diff / DAY_MS);
 }
 

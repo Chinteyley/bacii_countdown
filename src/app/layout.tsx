@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Doto, Geist, Geist_Mono } from "next/font/google";
 import {
+  EXAM_DATE_LONG,
   EXAM_START,
   SITE_DESCRIPTION,
   SITE_NAME,
@@ -35,10 +36,10 @@ export const metadata: Metadata = {
   description: SITE_DESCRIPTION,
   applicationName: SITE_NAME,
   keywords: [
-    "bacii 2026 countdown",
+    "bacii 2027 countdown",
     "bacii countdown",
     "Cambodia Bac II",
-    "Grade 12 exam date 2026",
+    "Grade 12 exam date 2027",
   ],
   alternates: {
     canonical: SITE_URL,
@@ -84,7 +85,7 @@ const jsonLd = {
     },
     {
       "@type": "Event",
-      name: "Cambodia Bac II National Exam 2026",
+      name: "Cambodia Bac II National Exam 2027",
       url: SITE_URL,
       startDate: EXAM_START,
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
@@ -94,7 +95,7 @@ const jsonLd = {
         name: "Cambodia",
       },
       description:
-        "Cambodia's Grade 12 national exam (Bac II) on 10 August 2026.",
+        `Cambodia's Grade 12 national exam (Bac II) on ${EXAM_DATE_LONG}.`,
     },
   ],
 };

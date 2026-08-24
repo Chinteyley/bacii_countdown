@@ -11,7 +11,7 @@ with occasional laptop. Many balance studying with chores, side jobs, or family
 responsibilities. They are 17–19 years old.
 
 ## Product Purpose
-A single-page countdown to the Bac II exam (10 August 2026, 07:00 ICT). It is
+A single-page countdown to the Bac II exam (10 August 2027, 07:00 ICT). It is
 **not** a study tool. It is one number on a black screen that they can return
 to. The site does emotional work by being almost-nothing — a steady, industrial,
 minimal presence. No copy. No coaching. No emoji. Just the day count.

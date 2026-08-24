@@ -1,6 +1,6 @@
 # Bacii Exam Countdown
 
-Live countdown for the Cambodian Grade 12 Bacii exam (target date: August 10, 2026 at 07:00 GMT+7). Available at https://bacii.ctey.dev.
+Live countdown for the Cambodian Grade 12 Bacii exam (target date: August 10, 2027 at 07:00 GMT+7). Available at https://bacii.ctey.dev.
 
 ## Features
 - Real-time countdown with animated digits powered by NumberFlow.
