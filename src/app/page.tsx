@@ -35,7 +35,7 @@ export default function Page() {
           {PAGE_HEADING}
         </h1>
         <Countdown initial={initial} />
-        <p className="max-w-[26rem] text-center font-sans text-sm leading-relaxed text-fg">
+        <p className="sr-only">
           Cambodia&apos;s Grade 12 Bac II exam is on{" "}
           <time dateTime={EXAM_DATE_ISO}>{EXAM_DATE_LONG}</time>.
         </p>
