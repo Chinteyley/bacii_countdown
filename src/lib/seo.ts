@@ -1,3 +1,7 @@
+import { EXAM_START } from "@/lib/countdown";
+
+export { EXAM_START };
+
 export const SITE_ORIGIN = "https://bacii.ctey.dev";
 export const SITE_URL = `${SITE_ORIGIN}/`;
 
@@ -9,10 +13,10 @@ export const SITE_TITLE =
 export const SITE_DESCRIPTION =
   "Live countdown to Cambodia's Bac II exam on 10 August 2026. See how many days Grade 12 students have left.";
 
-export const PAGE_HEADING = "Bac II";
-export const PAGE_HEADING_REST = " 2026 countdown";
+export const PAGE_HEADING = "Bac II 2026 countdown";
 
 export const PAGE_SUMMARY =
-  "Days remaining until Cambodia's Bac II Grade 12 national exam on 10 August 2026.";
+  "Cambodia's Grade 12 Bac II exam is on 10 August 2026.";
 
-export const EXAM_START = "2026-08-10T07:00:00+07:00";
+export const EXAM_DATE_LABEL = "10 / 08 / 2026";
+export const EXAM_DATE_ISO = "2026-08-10";
