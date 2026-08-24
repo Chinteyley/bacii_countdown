@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import NumberFlow from "@/components/prismui/number-flow";
-import { getTimeLeft, pad, type TimeLeft } from "@/lib/countdown";
+import { getTimeLeft, isElapsed, pad, type TimeLeft } from "@/lib/countdown";
+import { EXAM_DATE_ISO } from "@/lib/seo";
 
 export function Countdown({ initial }: { initial: TimeLeft }) {
   const [time, setTime] = useState<TimeLeft>(initial);
@@ -45,16 +46,22 @@ export function Countdown({ initial }: { initial: TimeLeft }) {
       <p className="font-mono text-[11px] uppercase tracking-[0.65em] text-fg sm:text-xs">
         days
       </p>
-      <p className="font-mono text-xs tabular-nums tracking-[0.28em] text-fg-muted sm:text-sm">
-        {pad(time.hours)}
-        <span className="text-fg-faint">h</span>
-        {"   "}
-        {pad(time.minutes)}
-        <span className="text-fg-faint">m</span>
-        {"   "}
-        {pad(time.seconds)}
-        <span className="text-fg-faint">s</span>
-      </p>
+      {isElapsed(time) ? (
+        <p className="font-mono text-xs tracking-[0.18em] text-fg-muted sm:text-sm">
+          <time dateTime={EXAM_DATE_ISO}>10 August 2026</time>
+        </p>
+      ) : (
+        <p className="font-mono text-xs tabular-nums tracking-[0.28em] text-fg-muted sm:text-sm">
+          {pad(time.hours)}
+          <span className="text-fg-faint">h</span>
+          {"   "}
+          {pad(time.minutes)}
+          <span className="text-fg-faint">m</span>
+          {"   "}
+          {pad(time.seconds)}
+          <span className="text-fg-faint">s</span>
+        </p>
+      )}
     </>
   );
 }

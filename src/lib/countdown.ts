@@ -21,3 +21,12 @@ export function getTimeLeft(now = Date.now()): TimeLeft {
 export function pad(n: number): string {
   return n.toString().padStart(2, "0");
 }
+
+export function isElapsed(time: TimeLeft): boolean {
+  return (
+    time.days === 0 &&
+    time.hours === 0 &&
+    time.minutes === 0 &&
+    time.seconds === 0
+  );
+}
