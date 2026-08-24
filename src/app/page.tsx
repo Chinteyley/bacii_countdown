@@ -5,6 +5,7 @@ import { getTimeLeft } from "@/lib/countdown";
 import {
   EXAM_DATE_ISO,
   EXAM_DATE_LABEL,
+  EXAM_DATE_LONG,
   PAGE_HEADING,
 } from "@/lib/seo";
 
@@ -36,7 +37,7 @@ export default function Page() {
         <Countdown initial={initial} />
         <p className="max-w-[26rem] text-center font-sans text-sm leading-relaxed text-fg">
           Cambodia&apos;s Grade 12 Bac II exam is on{" "}
-          <time dateTime={EXAM_DATE_ISO}>10 August 2026</time>.
+          <time dateTime={EXAM_DATE_ISO}>{EXAM_DATE_LONG}</time>.
         </p>
       </section>
 

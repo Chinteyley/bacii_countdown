@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import NumberFlow from "@/components/prismui/number-flow";
 import { getTimeLeft, isElapsed, pad, type TimeLeft } from "@/lib/countdown";
-import { EXAM_DATE_ISO } from "@/lib/seo";
+import { EXAM_DATE_ISO, EXAM_DATE_LONG } from "@/lib/seo";
 
 export function Countdown({ initial }: { initial: TimeLeft }) {
   const [time, setTime] = useState<TimeLeft>(initial);
@@ -48,7 +48,7 @@ export function Countdown({ initial }: { initial: TimeLeft }) {
       </p>
       {isElapsed(time) ? (
         <p className="font-mono text-xs tracking-[0.18em] text-fg-muted sm:text-sm">
-          <time dateTime={EXAM_DATE_ISO}>10 August 2026</time>
+          <time dateTime={EXAM_DATE_ISO}>{EXAM_DATE_LONG}</time>
         </p>
       ) : (
         <p className="font-mono text-xs tabular-nums tracking-[0.28em] text-fg-muted sm:text-sm">
