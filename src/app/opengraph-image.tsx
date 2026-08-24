@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const dynamic = "force-static";
-export const alt = "Bacii Exam Countdown";
+export const alt = "BacII 2026 countdown — Cambodia Grade 12 exam date";
 export const size = { width: 1200, height: 630 } as const;
 export const contentType = "image/png";
 
