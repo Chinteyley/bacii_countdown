@@ -5,6 +5,8 @@ export { EXAM_START };
 export const SITE_ORIGIN = "https://bacii.ctey.dev";
 export const SITE_URL = `${SITE_ORIGIN}/`;
 
+export const JOMNOUY_URL = "https://jomnouy.ctey.dev";
+
 export const SITE_NAME = "BacII Countdown";
 
 export const SITE_TITLE =
