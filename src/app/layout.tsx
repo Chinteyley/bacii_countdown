@@ -88,12 +88,29 @@ const jsonLd = {
       name: "Cambodia Bac II National Exam 2027",
       url: SITE_URL,
       startDate: EXAM_START,
+      endDate: "2027-08-11T17:00:00+07:00",
       eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
       eventStatus: "https://schema.org/EventScheduled",
       location: {
-        "@type": "Country",
+        "@type": "Place",
         name: "Cambodia",
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "KH",
+        },
       },
+      organizer: {
+        "@type": "Organization",
+        name: "Ministry of Education, Youth and Sport (MoEYS), Cambodia",
+      },
+      offers: {
+        "@type": "Offer",
+        url: SITE_URL,
+        price: 0,
+        priceCurrency: "USD",
+        availability: "https://schema.org/InStock",
+      },
+      image: `${SITE_ORIGIN}/opengraph-image`,
       description:
         `Cambodia's Grade 12 national exam (Bac II) on ${EXAM_DATE_LONG}.`,
     },
