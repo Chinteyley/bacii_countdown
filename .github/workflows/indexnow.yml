@@ -1,0 +1,140 @@
+name: indexnow ping
+
+# Production-only IndexNow ping after a deploy to main.
+# This workflow does not run on pull_request or preview branches.
+# It only talks to https://bacii.ctey.dev — never a *.pages.dev preview.
+#
+# Secrets: none. The IndexNow key is public by design (hosted at KEY_URL).
+# Wait: Cloudflare Pages builds asynchronously after the git push, so the
+# first step polls the production key URL until it returns HTTP 200 with
+# the exact key body (up to 15 minutes). Challenge/HTML responses count
+# as not-ready and are retried.
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  ping-production:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      HOST: bacii.ctey.dev
+      KEY: 608146f75e34273b9c6f3565d5a4bab0
+      KEY_URL: https://bacii.ctey.dev/608146f75e34273b9c6f3565d5a4bab0.txt
+      SITEMAP_URL: https://bacii.ctey.dev/sitemap.xml
+      INDEXNOW_URL: https://api.indexnow.org/indexnow
+      USER_AGENT: bacii-countdown-indexnow (+https://bacii.ctey.dev/)
+    steps:
+      - name: Wait for production key file
+        run: |
+          set -eu
+          attempts=60
+          delay=15
+          for i in $(seq 1 "$attempts"); do
+            http_code="$(curl -sS -A "$USER_AGENT" -o /tmp/indexnow-key.txt -w '%{http_code}' --max-time 20 "$KEY_URL" || echo 000)"
+            if [ "$http_code" = "200" ] && cmp -s /tmp/indexnow-key.txt <(printf '%s' "$KEY"); then
+              echo "Production key file is live"
+              exit 0
+            fi
+            echo "Attempt $i/$attempts: HTTP $http_code (not the exact key body yet)"
+            sleep "$delay"
+          done
+          echo "Timed out waiting for $KEY_URL"
+          exit 1
+
+      - name: Read sitemap and POST to IndexNow
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import re
+          import sys
+          import time
+          import urllib.error
+          import urllib.request
+
+          host = os.environ["HOST"]
+          key = os.environ["KEY"]
+          key_url = os.environ["KEY_URL"]
+          sitemap_url = os.environ["SITEMAP_URL"]
+          indexnow_url = os.environ["INDEXNOW_URL"]
+          user_agent = os.environ["USER_AGENT"]
+
+          last_error = "no attempts"
+          sitemap = None
+          for attempt in range(1, 41):
+              request = urllib.request.Request(
+                  sitemap_url,
+                  headers={"User-Agent": user_agent, "Accept": "application/xml,text/xml,*/*"},
+              )
+              try:
+                  with urllib.request.urlopen(request, timeout=20) as response:
+                      body = response.read()
+                      status = response.status
+              except urllib.error.HTTPError as error:
+                  body = error.read()
+                  status = error.code
+              except Exception as error:
+                  last_error = str(error)
+                  print(f"Sitemap attempt {attempt}/40: {last_error}", flush=True)
+                  time.sleep(15)
+                  continue
+
+              text = body.decode("utf-8", "replace")
+              challenged = (
+                  status == 403
+                  or "Just a moment" in text
+                  or "<urlset" not in text and "<sitemapindex" not in text
+              )
+              if status == 200 and not challenged:
+                  sitemap = text
+                  break
+              last_error = f"HTTP {status}"
+              print(f"Sitemap attempt {attempt}/40: {last_error}", flush=True)
+              time.sleep(15)
+
+          if sitemap is None:
+              sys.exit(f"Timed out waiting for {sitemap_url}: {last_error}")
+
+          urls = [match.strip() for match in re.findall(r"<loc>([^<]+)</loc>", sitemap)]
+          if not urls:
+              sys.exit("Production sitemap contained no <loc> URLs")
+
+          payload = {
+              "host": host,
+              "key": key,
+              "keyLocation": key_url,
+              "urlList": urls,
+          }
+          data = json.dumps(payload).encode("utf-8")
+          request = urllib.request.Request(
+              indexnow_url,
+              data=data,
+              method="POST",
+              headers={
+                  "Content-Type": "application/json; charset=utf-8",
+                  "User-Agent": user_agent,
+              },
+          )
+          try:
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  status = response.status
+                  body = response.read().decode("utf-8", "replace")
+          except urllib.error.HTTPError as error:
+              status = error.code
+              body = error.read().decode("utf-8", "replace")
+
+          print(f"Submitted {len(urls)} URL(s) from production sitemap", flush=True)
+          print(json.dumps(payload, indent=2), flush=True)
+          print(f"IndexNow HTTP {status}", flush=True)
+          if body:
+              print(body, flush=True)
+          if status not in (200, 202):
+              sys.exit(f"IndexNow rejected the submission with HTTP {status}")
+          PY
