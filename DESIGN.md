@@ -67,7 +67,7 @@ slightly.
 ## Copy
 Three on-screen strings only:
 - `BAC II`
-- `10 / 08 / 2027 · 07:00 ICT`
+- `09 / 08 / 2027 · 07:00 ICT`
 - `days`
 
 Plus a footer attribution.
